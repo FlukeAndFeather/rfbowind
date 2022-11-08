@@ -1,0 +1,54 @@
+---
+title: "Download data"
+author: "Max Czapanskiy"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(purrr)
+library(sbtools)
+library(stringr)
+```
+
+## Data sources
+
+This analysis relies on two data sources: tracking data collected by USGS and wind vectors from the Pacific Islands Ocean Observing System (PacIOOS) regional atmospheric model. These data are too large to store in the analysis repository, so this document automates the download process.
+
+## Tracking data
+
+The Red-footed Booby (RFBO) tracking data is archived in USGS' ScienceBase as part of a larger data release. We access the data using the `sbtools` package. Here, we query ScienceBase by the data release DOI and see there are five child items (i.e. components of the data release).
+
+```{r sb_query}
+# Query ScienceBase for the dataset
+sb_item <- query_sb_doi("10.5066/P9NTEXM6")[[1]]
+# List children items
+sb_children <- item_list_children(sb_item)
+sb_children
+```
+
+The RFBO data are in the child item entitled "2. GPS (e-obs) Tracking and Accelerometry Data of Seabirds Breeding in the Main Hawaiian Islands". Here, we locate and download the file containing RFBO data. NOTE: the file is 1.2 GB, so this will take a while.
+
+```{r sb_download}
+# Find GPS (e-obs) item
+is_eobs <- map_chr(sb_children, "title") %>% str_starts("2.")
+eobs_item <- sb_children[[which(is_eobs)]]
+# Find RFBO file within item
+eobs_files <- item_list_files(eobs_item)
+rfbo_url <- eobs_files$url[eobs_files$fname == "RFBO_eObs.zip"]
+# Download RFBO file
+item_file_download(
+  eobs_item, 
+  names = "RFBO_eObs.zip",
+  destinations = here("analysis", "data", "raw_data", "RFBO_eObs.zip")
+)
+```
+
+Finally, we extract the data from the archive.
+
+```{r rfbo_extract}
+
+```
+
+
+## Wind data
