@@ -14,6 +14,7 @@ RoxygenNote: 7.2.0
 Imports: 
     bookdown,
     here,
+    moveHMM,
     purrr,
     targets
 Suggests: devtools,
