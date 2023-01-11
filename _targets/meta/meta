@@ -1,0 +1,7 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+filter_tracks|function|17eeba5e8fc6d07f|||||||||||||||
+get_tracks|function|180558062813644a|||||||||||||||
+read_tracks|function|bc3f167d4d5f8e5b|||||||||||||||
+redis_tracks|function|7900b2bb07197594|||||||||||||||
+rfbo_path|stem|b65c1e40d12cdf44|259aee59bca3d89b|4e3739ef91745af0|-1485858364|/Users/frank/Documents/GitHub/manuscripts/rfbowind/analysis/data/raw_data/RFBO_eObs_clean.csv|t17693.9918287037s|2c31fabf658ea02a|4187229433|file|local|vector|||1.86||
+rfbo_tracks|stem|532a4e38a5e25bd9|d01aea603a462b55|96937e72331e425b|-2126907797||t19368.8969667901s|edce0efd19a3c370|219|rds|local|vector|||227.759||
