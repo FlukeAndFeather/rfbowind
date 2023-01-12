@@ -20,7 +20,7 @@ tracks <- tar_read("rfbo_decoded")
 
 RFBO tracks were cleaned and filtered according to the following:
 
--   Tracks were split into trips, defined as excursions \>50 km from the colony lasting \>2 hours.
+-   Tracks were split into trips, defined as excursions \>10 km from the colony lasting \>2 hours.
 
 -   Relocations within trips were re-discretized using linear interpolation at 2 min intervals.
 
@@ -38,9 +38,9 @@ The initial parameters were estimated via mixture modeling. The step length dist
 
 | State      | $\mu$ | $\sigma$ |
 |------------|-------|----------|
-| *transit*  | 1.3   | 0.37     |
-| *search*   | 0.37  | 0.18     |
-| *rest*     | 0.048 | 0.028    |
+| *transit*  | 1.3   | 0.30     |
+| *search*   | 0.38  | 0.18     |
+| *rest*     | 0.049 | 0.022    |
 
 : Initial step distribution parameters (in km).
 
@@ -48,9 +48,9 @@ Likewise, the turning angle distribution was assumed to come from a mixture of t
 
 | State      | $\mu$  | $\kappa$ |
 |------------|--------|----------|
-| *transit*  | -0.011 | 7.2      |
-| *search*   | -0.043 | 1.7      |
-| *rest*     | -0.015 | 2.7      |
+| *transit*  | -0.010 | 6.5      |
+| *search*   | -0.011 | 1.3      |
+| *rest*     | 0.0080 | 2.5      |
 
 : Initial turning angle distribution parameters (in radians).
 
@@ -92,14 +92,14 @@ ggplot(step_plot_data,
 
 ### Example decoded trip
 
-Map of a trip with and without KPNWR for scale.
+Map of a trip with KPNWR for scale.
 
 ```{r}
 #| label: decoded-trips
 
 kpnwr <- c(lon = -159.4, lat = 22.2)
 
-burst <- filter(tracks, burst == "1149_0046") %>% 
+burst <- filter(tracks, burst == "1149_0054") %>% 
   mutate(state = factor(state, 
                         levels = 1:3, 
                         labels = c("rest", "search", "transit")))
@@ -112,17 +112,8 @@ ggplot(burst, aes(x, y, color = state, group = 1)) +
   scale_color_manual(values = palette) +
   coord_map() +
   theme_classic() +
-  theme(legend.justification = c(0, 0),
-        legend.position = c(0.01, 0.25),
-        legend.title = element_blank())
-ggplot(burst, aes(x, y, color = state, group = 1)) +
-  geom_path() +
-  geom_point() +
-  scale_color_manual(values = palette) +
-  coord_map() +
-  theme_classic() +
-  theme(legend.justification = c(0, 0),
-        legend.position = c(0.45, 0.25),
+  theme(legend.justification = c(0.5, 0.5),
+        legend.position = c(0.45, 0.55),
         legend.title = element_blank())
 
 ```

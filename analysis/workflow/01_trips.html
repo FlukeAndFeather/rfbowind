@@ -128,11 +128,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="trip-summary">Trip summary</h2>
 <p>RFBO tracks were cleaned and filtered according to the following:</p>
 <ul>
-<li><p>Tracks were split into trips, defined as excursions &gt;50 km from the colony lasting &gt;2 hours.</p></li>
+<li><p>Tracks were split into trips, defined as excursions &gt;10 km from the colony lasting &gt;2 hours.</p></li>
 <li><p>Relocations within trips were re-discretized using linear interpolation at 2 min intervals.</p></li>
 <li><p>Only trips with gaps ≤1 relocation were retained.</p></li>
 </ul>
-<p>That left 34 trips from 11 individuals. This sample size is small, so we probably want to relax the constraints.</p>
+<p>That left 17 trips from 8 individuals. This sample size is small, so we probably want to relax the constraints.</p>
 </section>
 <section id="movement-modeling" class="level2">
 <h2 class="anchored" data-anchor-id="movement-modeling">Movement modeling</h2>
@@ -153,17 +153,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td><em>transit</em></td>
 <td>1.3</td>
-<td>0.37</td>
+<td>0.30</td>
 </tr>
 <tr class="even">
 <td><em>search</em></td>
-<td>0.37</td>
+<td>0.38</td>
 <td>0.18</td>
 </tr>
 <tr class="odd">
 <td><em>rest</em></td>
-<td>0.048</td>
-<td>0.028</td>
+<td>0.049</td>
+<td>0.022</td>
 </tr>
 </tbody>
 </table>
@@ -180,18 +180,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td><em>transit</em></td>
-<td>-0.011</td>
-<td>7.2</td>
+<td>-0.010</td>
+<td>6.5</td>
 </tr>
 <tr class="even">
 <td><em>search</em></td>
-<td>-0.043</td>
-<td>1.7</td>
+<td>-0.011</td>
+<td>1.3</td>
 </tr>
 <tr class="odd">
 <td><em>rest</em></td>
-<td>-0.015</td>
-<td>2.7</td>
+<td>0.0080</td>
+<td>2.5</td>
 </tr>
 </tbody>
 </table>
@@ -242,13 +242,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="example-decoded-trip" class="level3">
 <h3 class="anchored" data-anchor-id="example-decoded-trip">Example decoded trip</h3>
-<p>Map of a trip with and without KPNWR for scale.</p>
+<p>Map of a trip with KPNWR for scale.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kpnwr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">lon =</span> <span class="sc">-</span><span class="fl">159.4</span>, <span class="at">lat =</span> <span class="fl">22.2</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>burst <span class="ot">&lt;-</span> <span class="fu">filter</span>(tracks, burst <span class="sc">==</span> <span class="st">"1149_0046"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>burst <span class="ot">&lt;-</span> <span class="fu">filter</span>(tracks, burst <span class="sc">==</span> <span class="st">"1149_0054"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">factor</span>(state, </span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, </span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"rest"</span>, <span class="st">"search"</span>, <span class="st">"transit"</span>)))</span>
@@ -261,27 +261,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> palette) <span class="sc">+</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_map</span>() <span class="sc">+</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.25</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.45</span>, <span class="fl">0.55</span>),</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="01_trips_files/figure-html/decoded-trips-1.png" class="img-fluid" width="672"></p>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(burst, <span class="fu">aes</span>(x, y, <span class="at">color =</span> state, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>() <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> palette) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_map</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.45</span>, <span class="fl">0.25</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="01_trips_files/figure-html/decoded-trips-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>

@@ -29,7 +29,7 @@ list(
   tar_target(
     rfbo_tracks_clean,
     rfbo_tracks_raw %>%
-      label_trips(colony_dist_km = 50, duration_hr = 2) %>%
+      label_trips(colony_dist_km = 10, duration_hr = 2) %>%
       rediscretize(time_step = 120) %>%
       quality_filter(max_gaps = 1)
   ),

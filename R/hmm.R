@@ -1,4 +1,7 @@
 fit_hmm <- function(tracks) {
+  # mixfit() doesn't work with targets! because of how it uses environments?
+  # tracks <- tar_read("rfbo_tracks_clean")
+
   # Process data
   rfbo_move <- prepData(
     dplyr::select(tracks, ID = burst, x, y),
@@ -8,7 +11,6 @@ fit_hmm <- function(tracks) {
 
   # Initial parameters
   rfbo_move_complete <- drop_na(rfbo_move)
-  # mixfit() doesn't work with targets! because of how it uses environments?
   # step_mix <- mixfit(
   #   rfbo_move_complete$step,
   #   ncomp = 3,
@@ -23,10 +25,10 @@ fit_hmm <- function(tracks) {
   #             angle_mean = circ.mean(angle))
   # angle_par0 <- c(angle_summary$angle_mean,
   #                 angle_summary$kappa)
-  step_par0 <- c(0.04772447, 0.36786316, 1.25252533,
-                 0.02725201, 0.17958237, 0.36818209)
-  angle_par0 <- c(-0.01529728, -0.04277677, -0.01149509,
-                  2.68410888, 1.66646372, 7.17154479)
+  step_par0 <- c(0.04862000, 0.38454036, 1.26205033,
+                 0.02178526, 0.18278770, 0.29642142)
+  angle_par0 <- c(0.008038844, -0.010528904, -0.010428729,
+                  2.547351225, 1.322956452, 6.498919447)
 
   # Fit model
   fitHMM(
