@@ -1,0 +1,128 @@
+---
+title: "RFBO Trips"
+format: 
+  html:
+    theme: yeti
+code-fold: true
+---
+
+```{r}
+#| include: false
+library(moveHMM)
+library(targets)
+library(tidyverse)
+
+hmm <- tar_read("rfbo_hmm")
+tracks <- tar_read("rfbo_decoded")
+```
+
+## Trip summary
+
+RFBO tracks were cleaned and filtered according to the following:
+
+-   Tracks were split into trips, defined as excursions \>50 km from the colony lasting \>2 hours.
+
+-   Relocations within trips were re-discretized using linear interpolation at 2 min intervals.
+
+-   Only trips with gaps ≤1 relocation were retained.
+
+That left `r n_distinct(tracks$burst)` trips from `r n_distinct(tracks$id)` individuals. This sample size is small, so we probably want to relax the constraints.
+
+## Movement modeling
+
+A 3-state hidden Markov model was fit to the movement data (step lengths and turning angles) to classify movement behavior as transit, search, and rest.
+
+### Initial parameter selection
+
+The initial parameters were estimated via mixture modeling. The step length distribution was assumed to come from a mixture of three gamma distributions.
+
+| State      | $\mu$ | $\sigma$ |
+|------------|-------|----------|
+| *transit*  | 1.3   | 0.37     |
+| *search*   | 0.37  | 0.18     |
+| *rest*     | 0.048 | 0.028    |
+
+: Initial step distribution parameters (in km).
+
+Likewise, the turning angle distribution was assumed to come from a mixture of three von Mises distributions. von Mises parameters ($\mu$ and $\kappa$) were estimated from the relocations as classified by the step length mixture model.
+
+| State      | $\mu$  | $\kappa$ |
+|------------|--------|----------|
+| *transit*  | -0.011 | 7.2      |
+| *search*   | -0.043 | 1.7      |
+| *rest*     | -0.015 | 2.7      |
+
+: Initial turning angle distribution parameters (in radians).
+
+### HMM parameters
+
+```{r}
+#| label: hmm-param
+#| fig-cap: Step length distribution from HMM
+
+hmm_plot_data <- getPlotData(hmm, type = "dist", format = "long")
+step_plot_data <- hmm_plot_data$step %>% 
+  mutate(state = case_when(
+    state == "state 1" ~ "rest",
+    state == "state 2" ~ "search",
+    state == "state 3" ~ "transit",
+    TRUE ~ "total"
+  ))
+
+palette = c(rest = "#E4A117",
+            search = "#61B6E7",
+            transit = "#1BA179",
+            total = "black")
+linetypes = c(rest = "solid",
+              search = "solid",
+              transit = "solid",
+              total = "dashed")
+
+ggplot(step_plot_data, 
+       aes(x = step, y = density, color = state, linetype = state)) +
+  geom_line() +
+  scale_color_manual(values = palette) +
+  scale_linetype_manual(values = linetypes) +
+  labs(x = "Step length (km)") +
+  theme_classic() +
+  theme(legend.position = c(1, 1),
+        legend.justification = c(1, 1),
+        legend.title = element_blank())
+```
+
+### Example decoded trip
+
+Map of a trip with and without KPNWR for scale.
+
+```{r}
+#| label: decoded-trips
+
+kpnwr <- c(lon = -159.4, lat = 22.2)
+
+burst <- filter(tracks, burst == "1149_0046") %>% 
+  mutate(state = factor(state, 
+                        levels = 1:3, 
+                        labels = c("rest", "search", "transit")))
+ggplot(burst, aes(x, y, color = state, group = 1)) +
+  geom_path() +
+  geom_point() +
+  annotate("point", 
+           kpnwr["lon"], kpnwr["lat"], 
+           color = "gold", size = 2, shape = 19) +
+  scale_color_manual(values = palette) +
+  coord_map() +
+  theme_classic() +
+  theme(legend.justification = c(0, 0),
+        legend.position = c(0.01, 0.25),
+        legend.title = element_blank())
+ggplot(burst, aes(x, y, color = state, group = 1)) +
+  geom_path() +
+  geom_point() +
+  scale_color_manual(values = palette) +
+  coord_map() +
+  theme_classic() +
+  theme(legend.justification = c(0, 0),
+        legend.position = c(0.45, 0.25),
+        legend.title = element_blank())
+
+```

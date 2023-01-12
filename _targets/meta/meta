@@ -1,6 +1,6 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 .ggOceanMapsenv|object|9be416b0fcb5a722|||||||||||||||
-.Random.seed|object|982ee40087eaa6d5|||||||||||||||
+.Random.seed|object|5192e8f8797d36d1|||||||||||||||
 angle_kappa0|object|5a81abcb2021a532|||||||||||||||
 angle_mean0|object|14d7baa47fb1ded7|||||||||||||||
 angle_par0|object|4841019a4e6e9b38|||||||||||||||
@@ -30,4 +30,5 @@ rfbo_tracks_raw|stem|b8546e5b041afb4e|4121287d644b0d8e|42e788c3ac8a8b2f|-4796878
 step_mix|object|88cd26152751b43a|||||||||||||||
 step_par0|object|931a268397e49bd9|||||||||||||||
 tracks|object|e85716419ccc951a|||||||||||||||
+trip_report|stem|199eeb1fe5efb116|1a1b4047a49c7bc9|536290b137dc4806|406373888|analysis/workflow/01_trips.html*analysis/workflow/01_trips.qmd|t19369.8588160735s|9a9fcf4b245fdab1|27687|file|local|vector|||6.086||
 x|object|db615c298eab34c3|||||||||||||||
