@@ -8,6 +8,8 @@ tar_option_set(
   packages = c("adehabitatLT",
                "geodist",
                "lubridate",
+               "mixR",
+               "moveHMM",
                "tidyverse"),
   format = "rds"
 )
@@ -28,10 +30,19 @@ list(
     command = read_tracks(rfbo_path)
   ),
   tar_target(
-    name = rfbo_tracks,
+    name = rfbo_tracks_clean,
     command = rfbo_tracks_raw %>%
       label_trips(colony_dist_km = 50, duration_hr = 2) %>%
       rediscretize(time_step = 120) %>%
       quality_filter(max_gaps = 1)
+  ),
+  # Fit HMM and decode states
+  tar_target(
+    name = rfbo_hmm,
+    command = fit_hmm(rfbo_tracks_clean)
+  ),
+  tar_target(
+    name = rfbo_decoded,
+    command = mutate(rfbo_tracks_clean, state = viterbi(rfbo_hmm))
   )
 )
