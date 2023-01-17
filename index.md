@@ -2,6 +2,6 @@
 
 ## Workflow
 
-[Downloading data](00_download_data.md)
+[Downloading data](analysis/workflow/00_download_data.md)
 
-[Trip analysis](01_trips.html)
+[Trip analysis](analysis/workflow/01_trips.html)
