@@ -8,7 +8,6 @@ tar_option_set(
   packages = c("adehabitatLT",
                "geodist",
                "lubridate",
-               "mixR",
                "moveHMM",
                "tidyverse"),
   format = "rds"
@@ -16,6 +15,11 @@ tar_option_set(
 
 # Run the R scripts in the R/ folder with your custom functions:
 tar_source()
+
+# Parameters for data cleaning
+coldist <- 20
+durhr <- 2
+maxgaps <- 4
 
 # Replace the target list below with your own:
 list(
@@ -29,9 +33,9 @@ list(
   tar_target(
     rfbo_tracks_clean,
     rfbo_tracks_raw %>%
-      label_trips(colony_dist_km = 10, duration_hr = 2) %>%
+      label_trips(colony_dist_km = coldist, duration_hr = durhr) %>%
       rediscretize(time_step = 120) %>%
-      quality_filter(max_gaps = 1)
+      quality_filter(max_gaps = maxgaps)
   ),
   # Fit HMM and decode states
   tar_target(rfbo_hmm, fit_hmm(rfbo_tracks_clean)),
@@ -40,5 +44,8 @@ list(
     mutate(rfbo_tracks_clean, state = viterbi(rfbo_hmm))
   ),
   # Trip report
-  tar_quarto(trip_report, here::here("analysis", "workflow", "01_trips.qmd"))
+  tar_quarto(trip_report, here::here("analysis", "workflow", "01_trips.qmd"),
+             execute_params = list(colony_distance_km = coldist,
+                                   duration_hr = durhr,
+                                   max_gaps = maxgaps))
 )
