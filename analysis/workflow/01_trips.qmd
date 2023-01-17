@@ -34,7 +34,7 @@ linetypes = c(rest = "solid",
 
 RFBO tracks were cleaned and filtered according to the following:
 
--   Tracks were split into trips, defined as excursions \>`r params$colony_distanc_km` km from the colony lasting \>`r params$duration_hr` hours.
+-   Tracks were split into trips, defined as excursions \>`r params$colony_distance_km` km from the colony lasting \>`r params$duration_hr` hours.
 
 -   Relocations within trips were re-discretized using linear interpolation at 2 min intervals.
 
@@ -107,7 +107,8 @@ for (trip in trips) {
   burst <- filter(tracks, burst == trip) %>% 
     mutate(state = factor(state, 
                           levels = 1:3, 
-                          labels = c("rest", "search", "transit")))
+                          labels = c("rest", "search", "transit"))) %>% 
+    drop_na(x, y)
   p <- ggplot(burst, aes(x, y, color = state, group = 1)) +
     geom_path() +
     geom_point() +
@@ -115,6 +116,7 @@ for (trip in trips) {
              kpnwr["lon"], kpnwr["lat"], 
              color = "gold", size = 2, shape = 19) +
     scale_color_manual(values = palette) +
+    labs(title = burst$burst[1]) +
     coord_map() +
     theme_classic() +
     theme(legend.position = "bottom",

@@ -1,6 +1,6 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 .ggOceanMapsenv|object|9be416b0fcb5a722|||||||||||||||
-.Random.seed|object|7dc5cb5972fd27b1|||||||||||||||
+.Random.seed|object|536f500b75e70a0e|||||||||||||||
 angle_kappa0|object|5a81abcb2021a532|||||||||||||||
 angle_mean0|object|14d7baa47fb1ded7|||||||||||||||
 angle_par0|object|4841019a4e6e9b38|||||||||||||||
@@ -34,5 +34,5 @@ step_mix|object|88cd26152751b43a|||||||||||||||
 step_par0|object|931a268397e49bd9|||||||||||||||
 test|stem|3d581767f6d6a41a|eb17b6655c5d2591|d84d7cdd1c3c4b08|1064684737|analysis/workflow/test.html*analysis/workflow/test.qmd|t19370.7477217819s|8a595f507b0a5209|10840|file|local|vector|||4.406||
 tracks|object|e85716419ccc951a|||||||||||||||
-trip_report|stem|412b3b905e744c1f|e64bd0055bfff934|b70c92c2ed9f8575|406373888|analysis/workflow/01_trips.html*analysis/workflow/01_trips.qmd|t19370.9996659645s|6d1485674db8c3b0|40189|file|local|vector|||64.245||
+trip_report|stem|57bd07985d0c318a|e64bd0055bfff934|b70c92c2ed9f8575|406373888|analysis/workflow/01_trips.html*analysis/workflow/01_trips.qmd|t19374.7728122252s|e04740d2f103d2e7|34016|file|local|vector|||32.915||
 x|object|db615c298eab34c3|||||||||||||||
