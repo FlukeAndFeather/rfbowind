@@ -101,10 +101,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#trip-summary" id="toc-trip-summary" class="nav-link active" data-scroll-target="#trip-summary">Trip summary</a></li>
+  <li><a href="#movement-modeling" id="toc-movement-modeling" class="nav-link" data-scroll-target="#movement-modeling">Movement modeling</a>
+  <ul class="collapse">
+  <li><a href="#initial-parameter-selection" id="toc-initial-parameter-selection" class="nav-link" data-scroll-target="#initial-parameter-selection">Initial parameter selection</a></li>
+  <li><a href="#hmm-parameters" id="toc-hmm-parameters" class="nav-link" data-scroll-target="#hmm-parameters">HMM parameters</a></li>
+  <li><a href="#decoded-trips" id="toc-decoded-trips" class="nav-link" data-scroll-target="#decoded-trips">Decoded trips</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -198,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="hmm-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="hmm-parameters">HMM parameters</h3>
-<div class="cell" data-hash="01_trips_cache/html/hmm-param_3ca712223e6af98b928d5ff4aee79078">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hmm_plot_data <span class="ot">&lt;-</span> <span class="fu">getPlotData</span>(hmm, <span class="at">type =</span> <span class="st">"dist"</span>, <span class="at">format =</span> <span class="st">"long"</span>)</span>
@@ -234,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="decoded-trips" class="level3">
 <h3 class="anchored" data-anchor-id="decoded-trips">Decoded trips</h3>
 <p>All the RFBO trips with behavioral state decoded using the Viterbi algorithm with the HMM. Gold point is KPNWR for reference.</p>
-<div class="cell" data-hash="01_trips_cache/html/unnamed-chunk-3_f3cb471849cc14ffc77985961773d09c">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>trips <span class="ot">&lt;-</span> <span class="fu">unique</span>(tracks<span class="sc">$</span>burst)</span>

@@ -1,3 +1,11 @@
 project:
   title: workflow
   output-dir: _output
+
+toc: true
+bibliography: references.bib
+
+format:
+  html:
+    theme: yeti
+    code-fold: true

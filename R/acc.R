@@ -71,5 +71,6 @@ acc_energy <- function(acc) {
            # 5 acceleration samples ~= w = 0.27 s
            across(x_high:z_high,
                   list(El = partial(El_fun, k = 5)),
+                  # TODO: fix this
                   .names = "substr({.col}, 1, 1)_{.fn}"))
 }

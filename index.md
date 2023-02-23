@@ -2,6 +2,8 @@
 
 ## Workflow
 
-[Downloading data](analysis/workflow/00_download_data.md)
+[Downloading data](analysis/workflow/_output/00_download_data.html)
 
-[Trip analysis](analysis/workflow/01_trips.html)
+[Trip analysis](analysis/workflow/_output/01_trips.html)
+
+[Acceleration analysis](analysis/workflow/_output/02_acc.html)

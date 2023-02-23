@@ -1,13 +1,5 @@
 ---
 title: "RFBO Trips"
-format:
-  html:
-    theme: yeti
-code-fold: true
-params:
-  colony_distance_km: -1
-  duration_hr: -1
-  max_gaps: -1
 ---
 
 ```{r}
@@ -28,17 +20,21 @@ linetypes = c(rest = "solid",
               search = "solid",
               transit = "solid",
               total = "dashed")
+
+colony_distance_km <- 20
+duration_hr <- 2
+max_gaps <- 4
 ```
 
 ## Trip summary
 
 RFBO tracks were cleaned and filtered according to the following:
 
--   Tracks were split into trips, defined as excursions \>`r params$colony_distance_km` km from the colony lasting \>`r params$duration_hr` hours.
+-   Tracks were split into trips, defined as excursions \>`r colony_distance_km` km from the colony lasting \>`r duration_hr` hours.
 
 -   Relocations within trips were re-discretized using linear interpolation at 2 min intervals.
 
--   Only trips with gaps ≤`r params$max_gaps` relocation`r ifelse(params$max_gaps == 1, "", "s")` were retained.
+-   Only trips with gaps ≤`r max_gaps` relocation`r ifelse(max_gaps == 1, "", "s")` were retained.
 
 That left `r n_distinct(tracks$burst)` trips from `r n_distinct(tracks$id)` individuals. This sample size is small, so we probably want to relax the constraints.
 

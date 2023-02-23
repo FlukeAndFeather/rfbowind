@@ -47,11 +47,7 @@ list(
   tar_target(rfbo_acc_raw, read_acc(rfbo_path)),
   tar_target(rfbo_acc, join_acc_tracks(rfbo_acc_raw, rfbo_decoded)),
   tar_target(rfbo_acc_El, acc_energy(rfbo_acc)),
-  # Trip report
-  tar_quarto(trip_report,
-             here("analysis", "workflow"),
-             cache = TRUE,
-             execute_params = list(colony_distance_km = coldist,
-                                   duration_hr = durhr,
-                                   max_gaps = maxgaps))
+  # Workflow reports
+  tar_quarto(reports,
+             here("analysis", "workflow"))
 )
