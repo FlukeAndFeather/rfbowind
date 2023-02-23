@@ -1,6 +1,6 @@
 project:
   title: workflow
-  output-dir: _output
+  output-dir: ../../docs/
 
 toc: true
 bibliography: references.bib

@@ -1,6 +1,6 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 .ggOceanMapsenv|object|9be416b0fcb5a722|||||||||||||||
-.Random.seed|object|ef9d200f6f7fed1e|||||||||||||||
+.Random.seed|object|0f04f4d1d77712ee|||||||||||||||
 acc|object|4f90bbc91237eab0|||||||||||||||
 acc_energy|function|cc1f73f878d2799a|||||||||||||||
 acc_fs|object|fd0531637108ffa4|||||||||||||||
@@ -28,7 +28,7 @@ read_acc|function|140f8fe44b8cc67e|||||||||||||||
 read_tracks|function|947bd3d3ed1fb5fe|||||||||||||||
 redis_tracks|function|764179bf87af18cc|||||||||||||||
 rediscretize|function|35fd6542c5272537|||||||||||||||
-reports|stem|63d843090c6f97cb|0307a6e00ed1de1a|d407d4112a05149e|-653841556|analysis/workflow/_output*analysis/workflow/00_download_data.md*analysis/workflow/01_trips.qmd*analysis/workflow/02_acc.qmd*analysis/workflow/_quarto.yml*analysis/workflow/references.bib|t19411.8320952033s|14d54b98d5b73253|7041522|file|local|vector|||88.714||
+reports|stem|4ac5efb61fdb6395|c6b779c65aa0b3e4|d407d4112a05149e|-653841556|docs*analysis/workflow/00_download_data.md*analysis/workflow/01_trips.qmd*analysis/workflow/02_acc.qmd*analysis/workflow/_quarto.yml*analysis/workflow/references.bib|t19411.8358802732s|4a9763af23276a17|7041684|file|local|vector|||94.935||
 rfbo_acc|stem|6e82cfaaadcd62e7|771aeb67ccd9b365|07a5f2ec9c265355|-1728546363||t19411.7651159429s|b3fb23585ae27dd8|42271740|rds|local|vector|||2201.511||
 rfbo_acc_El|stem|1f34b2fd302742b2|21ab42abedeb31f8|2656e1ee90eea9ea|1908512275||t19411.8085974591s|dffae2c4d6989959|326599499|rds|local|vector|||296.059||
 rfbo_acc_raw|stem|d70ede9b34bbbf45|1365fb16d2e9e20f|d2767df6c71e7be9|1162560404||t19411.7287727284s|a5054d5668a570d7|1164435935|rds|local|vector|||84.708||
@@ -45,5 +45,5 @@ step_mix|object|88cd26152751b43a|||||||||||||||
 step_par0|object|931a268397e49bd9|||||||||||||||
 test|stem|3d581767f6d6a41a|eb17b6655c5d2591|d84d7cdd1c3c4b08|1064684737|analysis/workflow/test.html*analysis/workflow/test.qmd|t19370.7477217819s|8a595f507b0a5209|10840|file|local|vector|||4.406||
 tracks|object|e85716419ccc951a|||||||||||||||
-trip_report|stem|920a67b2a2f635c8|bfebe83705d85fc5|986ece18cb807837|406373888|analysis/workflow/_output*analysis/workflow/00_download_data.md*analysis/workflow/01_trips.qmd*analysis/workflow/02_acc.qmd*analysis/workflow/_quarto.yml|t19411.7659198065s||2.22507279750931e-308|file|local|vector|||5.797||33m39m System command quarto failed
+trip_report|stem|920a67b2a2f635c8|bfebe83705d85fc5|986ece18cb807837|406373888|analysis/workflow/_output*analysis/workflow/00_download_data.md*analysis/workflow/01_trips.qmd*analysis/workflow/02_acc.qmd*analysis/workflow/_quarto.yml|t19411.7659198065s||2.22507359325773e-308|file|local|vector|||5.797||33m39m System command quarto failed
 x|object|db615c298eab34c3|||||||||||||||
