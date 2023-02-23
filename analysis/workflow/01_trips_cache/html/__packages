@@ -1,0 +1,14 @@
+MASS
+boot
+CircStats
+moveHMM
+targets
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats

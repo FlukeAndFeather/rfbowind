@@ -1,6 +1,6 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 .ggOceanMapsenv|object|9be416b0fcb5a722|||||||||||||||
-.Random.seed|object|536f500b75e70a0e|||||||||||||||
+.Random.seed|object|ddec226f4bf09c1a|||||||||||||||
 angle_kappa0|object|5a81abcb2021a532|||||||||||||||
 angle_mean0|object|14d7baa47fb1ded7|||||||||||||||
 angle_par0|object|4841019a4e6e9b38|||||||||||||||
@@ -13,14 +13,18 @@ fit_hmm|function|0e58b4ecce108cff|||||||||||||||
 foo|object|8d1a030d788ee518|||||||||||||||
 get_tracks|function|66784f70bd8b4522|||||||||||||||
 init_par|object|bde8d31082c3fb11|||||||||||||||
+join_acc_tracks|function|f5065ee3a1854e2a|||||||||||||||
 label_trips|function|650a3f5acdb59d04|||||||||||||||
 maxgaps|object|4fd03901ce9470f4|||||||||||||||
 move_kmeans|object|e7f5065c26803e43|||||||||||||||
 out|object|114c89949e36209f|||||||||||||||
 quality_filter|function|5e0d1e08cef47f43|||||||||||||||
+read_acc|function|140f8fe44b8cc67e|||||||||||||||
 read_tracks|function|947bd3d3ed1fb5fe|||||||||||||||
 redis_tracks|function|764179bf87af18cc|||||||||||||||
 rediscretize|function|35fd6542c5272537|||||||||||||||
+rfbo_acc|stem|6e82cfaaadcd62e7|771aeb67ccd9b365|07a5f2ec9c265355|-1728546363||t19411.7651159429s|b3fb23585ae27dd8|42271740|rds|local|vector|||2201.511||
+rfbo_acc_raw|stem|d70ede9b34bbbf45|1365fb16d2e9e20f|d2767df6c71e7be9|1162560404||t19411.7287727284s|a5054d5668a570d7|1164435935|rds|local|vector|||84.708||
 rfbo_decoded|stem|427ece01ce715b85|a20427879c9cdee5|90dbf90a1787dc41|792807912||t19370.1209167135s|ab2a96e0a9e076c3|857631|rds|local|vector|||0.511||
 rfbo_hmm|stem|76fe837013d13aca|699d2b2eb0d81962|102493c28cb3aeb2|1355762811||t19370.1209094301s|a031e83734ba1619|1180115|rds|local|vector|||56.147||
 rfbo_move|object|890dbe133014bd83|||||||||||||||
@@ -34,5 +38,5 @@ step_mix|object|88cd26152751b43a|||||||||||||||
 step_par0|object|931a268397e49bd9|||||||||||||||
 test|stem|3d581767f6d6a41a|eb17b6655c5d2591|d84d7cdd1c3c4b08|1064684737|analysis/workflow/test.html*analysis/workflow/test.qmd|t19370.7477217819s|8a595f507b0a5209|10840|file|local|vector|||4.406||
 tracks|object|e85716419ccc951a|||||||||||||||
-trip_report|stem|57bd07985d0c318a|e64bd0055bfff934|b70c92c2ed9f8575|406373888|analysis/workflow/01_trips.html*analysis/workflow/01_trips.qmd|t19374.7728122252s|e04740d2f103d2e7|34016|file|local|vector|||32.915||
+trip_report|stem|920a67b2a2f635c8|bfebe83705d85fc5|986ece18cb807837|406373888|analysis/workflow/_output*analysis/workflow/00_download_data.md*analysis/workflow/01_trips.qmd*analysis/workflow/02_acc.qmd*analysis/workflow/_quarto.yml|t19411.7659198065s|283784840480122c|6824196|file|local|vector|||69.353||
 x|object|db615c298eab34c3|||||||||||||||

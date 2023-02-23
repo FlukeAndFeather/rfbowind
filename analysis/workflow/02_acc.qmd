@@ -1,0 +1,44 @@
+---
+title: "RFBO Acceleration"
+format:
+  html:
+    theme: yeti
+    toc: true
+    code-fold: true
+code-fold: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+library(targets)
+library(tidyverse)
+
+# Specifying the store makes "Run Document" work
+tar_load("rfbo_acc", store = here::here("_targets"))
+```
+
+## Acceleration summary
+
+Acceleration was collected in 30 s bursts at 20 Hz.
+
+## Estimating flight behavior
+
+Heave (dorso-ventral acceleration) exhibits greater amplitude during flapping than gliding flight [@ropert-coudert2003; @kato2003; @weimerskirch2005]. Therefore flapping and gliding flight behaviors may be differentiated by patterns in the heave waveform.
+
+The heave waveform is composed of two components: 1) a low-frequency signal from the interaction of body orientation and gravity, and 2) a high-frequency signal from dynamic movement like flapping. To classify flight behavior, I will de-trend heave to remove the low-frequency component and calculate the *local energy* ($E_l$) of the high-frequency component, which should be bi-modally distributed.
+
+The energy of a signal ($E_s$) is the sum of the square of the signal's magnitude (Eq. @eq-energy ). The local energy is defined as the energy of the signal in a sliding window of width $w$.
+
+$$
+E_s=\sum_{n=-\infty}^{\infty}{|x(n)|^2}
+$$ {#eq-energy}
+
+The sliding window should be large enough to capture a complete peak-to-peak cycle in heave. The flapping frequency of RFBOs was previously identified as 3.7 Hz [@weimerskirch2005], so I chose $1 / 3.7 = 0.27 s$ for $w$, which covers 5 acceleration samples at 20 Hz.
+
+```{r}
+#| label: heave
+
+
+
+```
